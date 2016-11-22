@@ -5,17 +5,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class PlayActivity extends AppCompatActivity {
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.Random;
+
+public class PlayActivity extends AppCompatActivity implements View.OnClickListener {
 
     //Explicit
     private TextView scoreTextView, timeTextView, timesTextView;
     private ImageView imageView;
     private Button choice0Button, choice1Button, choice2Button, choice3Button;
-    private int timeAnInt = 0, timesAnInt = 1, scoreAnInt = 0;
+    private int timeAnInt = 0, timesAnInt = 1, scoreAnInt = 0,
+            randomAnInt, lengthAnInt;
     private boolean timeABoolean = false;   // false ==> ยังไม่หมดเวลา 120 วินาที
     private String jsonString;
     private String[] imageStrings, choice0Strings, choice1Strings,
@@ -43,6 +50,12 @@ public class PlayActivity extends AppCompatActivity {
         //My Loop
         myLoop();
 
+        //Button Controller
+        choice0Button.setOnClickListener(this);
+        choice1Button.setOnClickListener(this);
+        choice2Button.setOnClickListener(this);
+        choice3Button.setOnClickListener(this);
+
 
     }   // Main Method
 
@@ -54,6 +67,35 @@ public class PlayActivity extends AppCompatActivity {
             synQuestion.execute();
             jsonString = synQuestion.get();
             Log.d("gameV1", "JSON ==> " + jsonString);
+
+            JSONArray jsonArray = new JSONArray(jsonString);
+
+            lengthAnInt = jsonArray.length();
+
+            //จองหน่วยความจำ
+            imageStrings = new String[jsonArray.length()];
+            choice0Strings = new String[jsonArray.length()];
+            choice1Strings = new String[jsonArray.length()];
+            choice2Strings = new String[jsonArray.length()];
+            choice3Strings = new String[jsonArray.length()];
+            answerStrings = new String[jsonArray.length()];
+
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                imageStrings[i] = jsonObject.getString("Image");
+                choice0Strings[i] = jsonObject.getString("Choice0");
+                choice1Strings[i] = jsonObject.getString("Choice1");
+                choice2Strings[i] = jsonObject.getString("Choice2");
+                choice3Strings[i] = jsonObject.getString("Choice3");
+                answerStrings[i] = jsonObject.getString("Answer");
+
+
+            }   // for
+
+
 
 
         } catch (Exception e) {
@@ -97,5 +139,16 @@ public class PlayActivity extends AppCompatActivity {
         }, 1000);
 
     }   // myLoop
+
+    @Override
+    public void onClick(View view) {
+
+        Random random = new Random();
+        randomAnInt = random.nextInt(lengthAnInt);
+        Log.d("gameV2", "randomAnInt ==> " + randomAnInt);
+
+
+
+    }   // onClick
 
 }   // Main Class
