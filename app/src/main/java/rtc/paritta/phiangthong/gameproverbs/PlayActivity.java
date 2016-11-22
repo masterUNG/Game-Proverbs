@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -47,6 +49,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         //Syn Question From Server
         synQuestion();
 
+        //Show First View
+        Random random = new Random();
+        randomAnInt = random.nextInt(lengthAnInt);
+        Log.d("gameV2", "randomAnInt ==> " + randomAnInt);
+        showView();
+
         //My Loop
         myLoop();
 
@@ -58,6 +66,21 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }   // Main Method
+
+    private void showView() {
+
+        choice0Button.setText(choice0Strings[randomAnInt]);
+        choice1Button.setText(choice1Strings[randomAnInt]);
+        choice2Button.setText(choice2Strings[randomAnInt]);
+        choice3Button.setText(choice3Strings[randomAnInt]);
+
+        Picasso.with(PlayActivity.this)
+                .load(imageStrings[randomAnInt])
+                .resize(500, 450)
+                .into(imageView);
+
+
+    } // showView
 
     private void synQuestion() {
 
@@ -92,10 +115,10 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 choice3Strings[i] = jsonObject.getString("Choice3");
                 answerStrings[i] = jsonObject.getString("Answer");
 
+                Log.d("gameV2", "image(" + i + ") ==> " + imageStrings[i]);
+
 
             }   // for
-
-
 
 
         } catch (Exception e) {
@@ -147,6 +170,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         randomAnInt = random.nextInt(lengthAnInt);
         Log.d("gameV2", "randomAnInt ==> " + randomAnInt);
 
+        showView();
 
 
     }   // onClick
