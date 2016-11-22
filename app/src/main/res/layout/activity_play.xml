@@ -9,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="rtc.paritta.phiangthong.gameproverbs.PlayActivity">
+    tools:context="rtc.paritta.phiangthong.gameproverbs.PlayActivity"
+    android:background="@drawable/bg02">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -23,23 +24,29 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView"
             android:layout_weight="1"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="normal|bold"
-            android:textColor="#3b8dd4" />
+            android:textColor="@android:color/holo_red_dark" />
 
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="normal|bold" />
 
         <TextView
-            android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView3"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:text="TextView" />
     </LinearLayout>
 
     <LinearLayout
@@ -54,26 +61,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button"
-            android:textColor="#e42828"
-            android:background="#f5ef43" />
+            android:textColor="@android:color/background_light"
+            android:background="@color/colorAccent"
+            android:layout_marginBottom="5dp" />
 
         <Button
             android:text="Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button2" />
+            android:id="@+id/button2"
+            android:textColor="@android:color/background_light"
+            android:background="@color/colorAccent"
+            android:layout_marginBottom="5dp" />
 
         <Button
             android:text="Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button3" />
+            android:id="@+id/button3"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/background_light"
+            android:layout_marginBottom="5dp" />
 
         <Button
             android:text="Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button4" />
+            android:id="@+id/button4"
+            android:background="@color/colorAccent"
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
 
     <RelativeLayout
