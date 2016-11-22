@@ -17,12 +17,11 @@ public class MainActivity extends AppCompatActivity {
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
                 finish();
             }
         });
 
     }   // Main Method
-
 }   // Main Class
